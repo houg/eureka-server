@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: eureka-server
+  profiles:
+     active: apollo-env.properties  
+server:
+  port: 8761
+  servlet:
+    context-path: /register
+app:
+  id: evonate-newretail-eureka
+
+#表示是否将自己注册到Eureka Server上，默认为true
+eureka:
+  client:
+    register-with-eureka: false
+    #表示是否从Eureka Server上获取注册信息，默认为true
+    fetch-registry: false
+    serviceUrl: 
+      defaultZone: http://localhost:${server.port}/register/eureka/
+  instance:
+    hostname: localhost
+  server:
+    # 关闭自我保护机制
+    enable-self-preservation: false
+    # 每隔10s扫描服务列表，移除失效服务
+    eviction-interval-timer-in-ms: 10000  
+
+
